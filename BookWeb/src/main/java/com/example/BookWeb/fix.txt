@@ -1,0 +1,9 @@
+Implement basic Keycloak integration; frontend part pending
+
+- Added initial Keycloak configuration for backend.
+- Created placeholders for OAuth 2.0 flows.
+- Frontend integration and PKCE setup not yet implemented.
+- To be completed after frontend development.
+
+
+// ‪C:\Users\dotai\Desktop\BookWeb\keycloak-25.0
