@@ -2,16 +2,15 @@ package com.example.customer.viewmodel.useraddress;
 
 import com.example.customer.model.UserAddress;
 import com.example.customer.viewmodel.address.Address;
-import com.example.customer.viewmodel.address.AddressVm;
 import lombok.Builder;
 
 @Builder
 public record UserAddressVm (Long id,
-        String userId,
-        AddressVm addressVm,Boolean isActive
+                             String userId,
+                             Address addressVm, Boolean isActive
 
                              ){
-    public static UserAddressVm fromModel(UserAddress userAddress, AddressVm addressGetVm) {
+    public static UserAddressVm fromModel(UserAddress userAddress, Address addressGetVm) {
         return UserAddressVm.builder()
                 .id(userAddress.getId())
                 .userId(userAddress.getUserId())
