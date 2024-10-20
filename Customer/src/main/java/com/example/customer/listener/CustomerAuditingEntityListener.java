@@ -1,27 +1,30 @@
 package com.example.customer.listener;
 
-import com.example.customer.model.AbstractAuditEnity;
+
+
+import com.example.customer.model.AbstractAuditEntity;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.data.auditing.AuditingHandler;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-public class CustomerAuditingEntityListener extends AuditingEntityListener {
-    public CustomerAuditingEntityListener(ObjectFactory<AuditingHandler> handler) {
+@Configurable
+public class CustomAuditingEntityListener extends AuditingEntityListener {
+    public CustomAuditingEntityListener(ObjectFactory<AuditingHandler> handler) {
         super.setAuditingHandler(handler);
     }
 
     @Override
     @PrePersist
     public void touchForCreate(Object target) {
-        super.touchForCreate(target);
-        AbstractAuditEnity auditEnity = (AbstractAuditEnity) target;
-        if (auditEnity.getCreatedBy() == null) {
+        AbstractAuditEntity entity = (AbstractAuditEntity) target;
+        if (entity.getCreatedBy() == null) {
             super.touchForCreate(target);
         } else {
-            if(auditEnity.getLastModifiedBy() == null) {
-                auditEnity.setLastModifiedBy(auditEnity.getCreatedBy());
+            if (entity.getLastModifiedBy() == null) {
+                entity.setLastModifiedBy(entity.getCreatedBy());
             }
         }
     }
@@ -29,9 +32,8 @@ public class CustomerAuditingEntityListener extends AuditingEntityListener {
     @Override
     @PreUpdate
     public void touchForUpdate(Object target) {
-        super.touchForUpdate(target);
-        AbstractAuditEnity auditEnity = (AbstractAuditEnity) target;
-        if (auditEnity.getLastModifiedBy() == null) {
+        AbstractAuditEntity entity = (AbstractAuditEntity) target;
+        if (entity.getLastModifiedBy() == null) {
             super.touchForUpdate(target);
         }
     }
