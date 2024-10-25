@@ -7,24 +7,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Customer" />
-      </profile>
-      <profile name="Annotation profile for BookWeb" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.0.Beta1/mapstruct-processor-1.6.0.Beta1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.0.Beta1/mapstruct-1.6.0.Beta1.jar" />
-        </processorPath>
         <module name="BookWeb" />
+        <module name="gatewayserver" />
+        <module name="Customer" />
+        <module name="customer" />
+        <module name="book" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bookk" target="21" />
+      <module name="customer (1)" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="BookWeb" options="-parameters" />
       <module name="Customer" options="-parameters" />
+      <module name="book" options="-parameters" />
+      <module name="bookk" options="-parameters" />
+      <module name="customer" options="-parameters" />
+      <module name="customer (1)" options="-parameters" />
+      <module name="gatewayserver" options="-parameters" />
     </option>
   </component>
 </project>
