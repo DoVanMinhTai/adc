@@ -7,7 +7,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="BookWeb" />
         <module name="gatewayserver" />
         <module name="Customer" />
         <module name="customer" />
@@ -16,6 +15,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bookk" target="21" />
+      <module name="BookWeb" target="22" />
       <module name="customer (1)" target="21" />
     </bytecodeTargetLevel>
   </component>
