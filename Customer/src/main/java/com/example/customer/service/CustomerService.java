@@ -3,12 +3,17 @@ package com.example.customer.service;
 import com.example.customer.config.KeyCloakPropsConfig;
 import com.example.customer.viewmodel.customer.CustomerPostVm;
 import com.example.customer.viewmodel.customer.CustomerVm;
+import jakarta.ws.rs.core.Response;
+import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
+import org.keycloak.admin.client.resource.UserResource;
+import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -40,10 +45,30 @@ public class CustomerService {
         return !users.isEmpty();
     }
 
-//    public CustomerVm create(CustomerPostVm customerPostVm) {
-//        RealmResource realmResource = keycloak.realm(keyCloakPropsConfig.getRealm());
-//        if(checkUsernameExists(realmResource, customerPostVm.userName())) {
-//            throw
-//        }
-//    }
+    public CustomerVm create(CustomerPostVm customerPostVm) {
+        RealmResource realmResource = keycloak.realm(keyCloakPropsConfig.getRealm());
+        if(checkUsernameExists(realmResource, customerPostVm.userName())) {
+            throw new RuntimeException();
+        }
+//        define user
+        UserRepresentation user  = new UserRepresentation();
+        user.setUsername(customerPostVm.userName());
+        user.setFirstName(customerPostVm.firstName());
+        user.setLastName(customerPostVm.lastName());
+        user.setEmail(customerPostVm.email());
+        CredentialRepresentation password = credentialRepresentation(customerPostVm.password());
+        user.setCredentials(Collections.singletonList(password));
+        user.setEnabled(true);
+        Response response = realmResource.users().create(user);
+
+//        get new user
+        String userId = CreatedResponseUtil.getCreatedId(response);
+        UserResource userResource = realmResource.users().get(userId);
+
+//        asgin role
+        RoleRepresentation realmRole = realmResource.roles().get(customerPostVm.role()).toRepresentation();
+        userResource.roles().realmLevel().add(Collections.singletonList(realmRole));
+
+        return CustomerVm.fromUserRepresentation(user);
+    }
 }

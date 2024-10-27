@@ -3,13 +3,15 @@ package com.example.customer.controller;
 import com.example.customer.model.UserAddress;
 import com.example.customer.service.CustomerService;
 import com.example.customer.viewmodel.ErrorVm;
+import com.example.customer.viewmodel.customer.CustomerPostVm;
+import com.example.customer.viewmodel.customer.CustomerVm;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,18 +24,21 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/test1")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",description = "OK" ,content = @Content(
-                    schema = @Schema(implementation = ErrorVm.class)
-                    ))
-    })
-    public String getCustomer() {
-        return "Hello World";
+    @PostMapping("/customers")
+    public ResponseEntity<CustomerVm> createCustomer(@Valid @RequestBody CustomerPostVm customerPostVm) {
+        CustomerVm customerVm = customerService.create(customerPostVm);
+        return ResponseEntity.ok().body(customerVm);
     }
 
     @GetMapping("/findId")
     public List<UserAddress> findUserAddress() {
         return null;
     }
+
+
+    @GetMapping("/api/v1/test")
+    public ResponseEntity<String> testEndpoint() {
+        return ResponseEntity.ok("Test successful");
+    }
+
 }
