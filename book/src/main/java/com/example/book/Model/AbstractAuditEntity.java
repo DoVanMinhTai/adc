@@ -1,8 +1,8 @@
-package com.example.BookWeb.Model;
+package com.example.book.Model;
 
 
 
-import com.example.BookWeb.listener.CustomAuditingEntityListener;
+import com.example.book.listener.CustomAuditingEntityListener;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;

@@ -1,7 +1,7 @@
-package com.example.BookWeb.Service;
+package com.example.book.Service;
 
-import com.example.BookWeb.Model.BookPublisher;
-import com.example.BookWeb.Respository.BookPublisherRespository;
+import com.example.book.Model.BookPublisher;
+import com.example.book.Respository.BookPublisherRespository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

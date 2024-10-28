@@ -1,7 +1,7 @@
-package com.example.BookWeb.Controller;
+package com.example.book.Controller;
 
-import com.example.BookWeb.Model.BookFormat;
-import com.example.BookWeb.Respository.BookFormatRepository;
+import com.example.book.Model.BookFormat;
+import com.example.book.Respository.BookFormatRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,6 +1,6 @@
-package com.example.BookWeb.Respository;
+package com.example.book.Respository;
 
-import com.example.BookWeb.Model.Book;
+import com.example.book.Model.Book;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -3,6 +3,7 @@ package com.example.customer.config;
 import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -21,12 +22,14 @@ public class SecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/swagger-ui","/swagger-ui/**").permitAll()
                         .requestMatchers("/api/v1/**").hasRole("CUSTOMER")
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 ).oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
 
         return http.build();
     }
+
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverterForKeycloak() {
         Converter<Jwt, Collection<GrantedAuthority>> jwtGrantedAuthoritiesConverter = jwt -> {

@@ -1,4 +1,4 @@
-package com.example.BookWeb.Model;
+package com.example.book.Model;
 
 import java.util.Collection;
 

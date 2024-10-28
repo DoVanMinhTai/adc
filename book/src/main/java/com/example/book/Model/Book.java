@@ -1,4 +1,4 @@
-package com.example.BookWeb.Model;
+package com.example.book.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

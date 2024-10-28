@@ -1,8 +1,8 @@
-package com.example.BookWeb.listener;
+package com.example.book.listener;
 
 
 
-import com.example.BookWeb.Model.AbstractAuditEntity;
+import com.example.book.Model.AbstractAuditEntity;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import org.springframework.beans.factory.ObjectFactory;

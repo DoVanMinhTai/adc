@@ -47,9 +47,9 @@ public class CustomerService {
 
     public CustomerVm create(CustomerPostVm customerPostVm) {
         RealmResource realmResource = keycloak.realm(keyCloakPropsConfig.getRealm());
-        if(checkUsernameExists(realmResource, customerPostVm.userName())) {
-            throw new RuntimeException();
-        }
+//        if(checkUsernameExists(realmResource, customerPostVm.userName())) {
+//            throw new RuntimeException();
+//        }
 //        define user
         UserRepresentation user  = new UserRepresentation();
         user.setUsername(customerPostVm.userName());

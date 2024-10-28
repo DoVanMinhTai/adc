@@ -1,4 +1,4 @@
-package com.example.BookWeb.Config;
+package com.example.book.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

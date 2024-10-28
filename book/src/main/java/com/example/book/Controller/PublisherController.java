@@ -1,9 +1,9 @@
-package com.example.BookWeb.Controller;
+package com.example.book.Controller;
 
 
-import com.example.BookWeb.Model.BookPublisher;
-import com.example.BookWeb.Respository.BookPublisherRespository;
-import com.example.BookWeb.Service.BookPublisherService;
+import com.example.book.Model.BookPublisher;
+import com.example.book.Respository.BookPublisherRespository;
+import com.example.book.Service.BookPublisherService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

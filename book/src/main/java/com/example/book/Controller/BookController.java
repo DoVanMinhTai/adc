@@ -1,11 +1,11 @@
-package com.example.BookWeb.Controller;
+package com.example.book.Controller;
 
 
 
-import com.example.BookWeb.Model.Book;
-import com.example.BookWeb.Model.BookPublisher;
-import com.example.BookWeb.Model.PaginatedItems;
-import com.example.BookWeb.Service.BookService;
+
+import com.example.book.Model.Book;
+import com.example.book.Model.PaginatedItems;
+import com.example.book.Service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/v1/controller")
 public class BookController {
-    private  BookService bookService;
+    private BookService bookService;
 
     public BookController(BookService bookService) {
         this.bookService = bookService;

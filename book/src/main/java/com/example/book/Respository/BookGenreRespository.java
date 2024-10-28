@@ -1,6 +1,6 @@
-package com.example.BookWeb.Respository;
+package com.example.book.Respository;
 
-import com.example.BookWeb.Model.BookGenre;
+import com.example.book.Model.BookGenre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

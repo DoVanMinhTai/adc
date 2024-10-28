@@ -1,8 +1,7 @@
-package com.example.BookWeb.Controller;
+package com.example.book.Controller;
 
-import com.example.BookWeb.Model.BookReview;
-import com.example.BookWeb.Respository.ReviewsRepository;
-import com.example.BookWeb.Service.BookReviewService;
+import com.example.book.Model.BookReview;
+import com.example.book.Service.BookReviewService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

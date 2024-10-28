@@ -1,7 +1,7 @@
-package com.example.BookWeb.Controller;
+package com.example.book.Controller;
 
-import com.example.BookWeb.Model.Genre;
-import com.example.BookWeb.Respository.GenreRespository;
+import com.example.book.Model.Genre;
+import com.example.book.Respository.GenreRespository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,9 +1,9 @@
-package com.example.BookWeb.Service;
+package com.example.book.Service;
 
-import com.example.BookWeb.Model.Book;
-import com.example.BookWeb.Model.BookReview;
-import com.example.BookWeb.Respository.BookRepository;
-import com.example.BookWeb.Respository.ReviewsRepository;
+import com.example.book.Model.Book;
+import com.example.book.Model.BookReview;
+import com.example.book.Respository.BookRepository;
+import com.example.book.Respository.ReviewsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

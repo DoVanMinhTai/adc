@@ -1,7 +1,7 @@
-package com.example.BookWeb.Service;
+package com.example.book.Service;
 
-import com.example.BookWeb.Model.*;
-import com.example.BookWeb.Respository.*;
+import com.example.book.Model.*;
+import com.example.book.Respository.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
