@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  identity:
+    image: quay.io/keycloak/keycloak:26.0.2
+    command: 'start-dev --import-realm'
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: admin
+      KC_HTTP_PORT: 8080
+    depends_on:
+      - postgres
+    volumes:
+      - ./identity/realm-export.json:/opt/keycloak/data/import/realm-export.json
+    networks:
+      - book-network
+
+  postgres:
+    image: postgres:16-alpine
+    hostname: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+#      - ./docker/postgres/postgresql.conf.sample:/usr/share/postgresql/postgresql.conf.sample
+#      - ./postgres_init.sql:/docker-entrypoint-initdb.d/postgres_init.sql
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: keycloak
+    networks:
+      - book-network
+
+  pgadmin:
+    image: dpage/pgadmin4:6.14
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@yas.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks:
+      - book-network
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+networks:
+  book-network:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
