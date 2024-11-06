@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>gatewayserver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>GateWayServer</name>
+	<name>gatewayserver</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
