@@ -10,12 +10,19 @@ public record UserAddressVm (Long id,
                              AddressVm addressVm, Boolean isActive
                              ){
     public static UserAddressVm fromModel(UserAddress userAddress, AddressVm addressGetVm) {
-        return UserAddressVm.builder()
-                .id(userAddress.getId())
-                .userId(userAddress.getUserId())
-                .addressVm(addressGetVm)
-                .isActive(userAddress.getActive())
-                .build();
+//        return UserAddressVm.builder()
+//                .id(userAddress.getId())
+//                .userId(userAddress.getUserId())
+//                .addressVm(addressGetVm)
+//                .isActive(userAddress.getIsActive())
+//                .build();
+        return new UserAddressVm(
+                userAddress.getId(),
+                userAddress.getUserId(),
+                addressGetVm,
+                userAddress.getIsActive()
+        );
+
     }
 
 }

@@ -15,11 +15,50 @@ public class KeyCloakPropsConfig {
     private String resource;
     private Credentials credentials = new Credentials();
 
+    public String getAuthServerURL() {
+        return authServerURL;
+    }
+
+    public void setAuthServerURL(String authServerURL) {
+        this.authServerURL = authServerURL;
+    }
+
+    public String getRealm() {
+        return realm;
+    }
+
+    public void setRealm(String realm) {
+        this.realm = realm;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
+    }
+
+    public Credentials getCredentials() {
+        return credentials;
+    }
+
+    public void setCredentials(Credentials credentials) {
+        this.credentials = credentials;
+    }
 
     @Getter
     @Setter
     public class Credentials {
         private String secret;
+
+        public String getSecret() {
+            return secret;
+        }
+
+        public void setSecret(String secret) {
+            this.secret = secret;
+        }
     }
 
 }

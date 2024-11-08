@@ -61,7 +61,7 @@ services:
       - "8081:8081"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/customer
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/book
     networks:
       - book-network
 

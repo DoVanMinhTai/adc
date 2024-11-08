@@ -7,6 +7,8 @@ import lombok.*;
 @Table(name = "user_address")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Builder
 public class UserAddress extends AbstractAuditEntity {
     @Id
@@ -18,6 +20,7 @@ public class UserAddress extends AbstractAuditEntity {
     private Long addressId;
 
     private Boolean isActive;
+
 
     public Long getId() {
         return id;
@@ -43,7 +46,7 @@ public class UserAddress extends AbstractAuditEntity {
         this.addressId = addressId;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 

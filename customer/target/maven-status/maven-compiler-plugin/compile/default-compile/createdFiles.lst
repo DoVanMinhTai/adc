@@ -1,12 +1,10 @@
 com\example\customer\viewmodel\customer\CustomerPostVm.class
 com\example\customer\model\AbstractAuditEntity.class
-com\example\customer\viewmodel\useraddress\UserAddressVm$UserAddressVmBuilder.class
 com\example\customer\service\UserAddressService.class
 com\example\customer\config\KeyCloakClientConfig.class
 com\example\customer\config\SecurityConfig.class
 com\example\customer\viewmodel\customer\CustomerProfileRequestVm.class
 com\example\customer\listener\CustomerAuditingEntityListener.class
-com\example\customer\model\UserAddress$UserAddressBuilder.class
 com\example\customer\viewmodel\customer\CustomerAdminVm.class
 com\example\customer\viewmodel\ErrorVm.class
 com\example\customer\viewmodel\customer\CustomerList.class
@@ -26,4 +24,3 @@ com\example\customer\config\RestClientConfig.class
 com\example\customer\controller\CustomerController.class
 com\example\customer\respository\UserAddressRespository.class
 com\example\customer\viewmodel\customer\CustomerVm.class
-com\example\customer\viewmodel\address\AddressVm$AddressVmBuilder.class
