@@ -6,6 +6,7 @@ package com.example.book.Controller;
 import com.example.book.Model.Book;
 import com.example.book.Model.PaginatedItems;
 import com.example.book.Service.BookService;
+import com.example.book.viewmodel.BookListGetVM;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -34,5 +35,24 @@ public class BookController {
         PaginatedItems<Book> paginatedItems = bookService.searchBooksByWord(word,pageIndex,pageSize);
         return ResponseEntity.ok(paginatedItems);
     }
+
+    @GetMapping("/books")
+    public ResponseEntity<BookListGetVM> listBooks(
+            @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "5", required = false) int pageSize,
+            @RequestParam(value = "book-name", defaultValue = "", required = false) String bookName,
+            @RequestParam(value = "brand-name", defaultValue = "", required = false) String brandName
+    ) {
+      return ResponseEntity.ok(bookService.getBooksWithFilter(pageNo,pageSize,bookName,brandName));
+    }
+    @GetMapping("/book/brand")
+    public ResponseEntity<List<Book>> getBookBrand(
+            @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "5", required = false) int pageSize,
+            @RequestParam(value = "brand-name", defaultValue = "", required = false) String brandName
+    ) {
+        return ResponseEntity.ok(bookService.getBooksByBrand(brandName ));
+    }
+
 
 }

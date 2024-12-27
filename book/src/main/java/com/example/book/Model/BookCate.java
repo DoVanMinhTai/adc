@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "bookgenre")
-public class BookGenre {
+public class BookCate {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -18,16 +18,16 @@ public class BookGenre {
     private Book book;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "genre_id")
-    private Genre genre;
+    @JoinColumn(name = "cate_id")
+    private Cate cate;
 
-    public BookGenre(long id, Book book, Genre genre) {
+    public BookCate(long id, Book book, Cate cate) {
         this.id = id;
         this.book = book;
-        this.genre = genre;
+        this.cate = cate;
     }
 
-    public BookGenre() {
+    public BookCate() {
 
     }
 
@@ -47,11 +47,11 @@ public class BookGenre {
         this.book = book;
     }
 
-    public Genre getGenre() {
-        return genre;
+    public Cate getGenre() {
+        return cate;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setGenre(Cate cate) {
+        this.cate = cate;
     }
 }

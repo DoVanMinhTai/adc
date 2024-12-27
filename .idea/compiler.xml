@@ -10,12 +10,12 @@
         <module name="gatewayserver" />
         <module name="Customer" />
         <module name="book" />
+        <module name="customer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bookk" target="21" />
       <module name="BookWeb" target="22" />
-      <module name="customer" target="21" />
       <module name="customer (1)" target="21" />
     </bytecodeTargetLevel>
   </component>

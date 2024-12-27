@@ -1,15 +1,15 @@
 package com.example.book.Respository;
 
-import com.example.book.Model.Genre;
+import com.example.book.Model.Cate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface GenreRespository extends JpaRepository<Genre, Long> {
-    List<Genre> findAll();
-    Genre save(Genre genre);
-    void delete(Genre genre);
+public interface GenreRespository extends JpaRepository<Cate, Long> {
+    List<Cate> findAll();
+    Cate save(Cate cate);
+    void delete(Cate cate);
 
 }
