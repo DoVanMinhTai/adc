@@ -16,18 +16,14 @@ import java.util.List;
 @Service
 public class BookService {
     private final BookRepository bookRepository;
-    private final BookFormatRepository bookFormatRepository;
-    private final CategoryRepository categoryRepository;
+    private final BookCategoryRepository bookCategoryRepository;
     private final BookPublisherRespository bookPublisherRespository;
     private final GenreRespository genreRespository;
     private final BrandRepository brandRepository;
 
-    public BookService(BookRepository bookRepository, BookFormatRepository bookFormatRepository, CategoryRepository categoryRepository,
-                       BookPublisherRespository bookPublisherRespository, GenreRespository genreRespository, BrandRepository brandRepository) {
-
+    public BookService(BookRepository bookRepository, BookCategoryRepository bookCategoryRepository, BookPublisherRespository bookPublisherRespository, GenreRespository genreRespository, BrandRepository brandRepository) {
         this.bookRepository = bookRepository;
-        this.bookFormatRepository = bookFormatRepository;
-        this.categoryRepository = categoryRepository;
+        this.bookCategoryRepository = bookCategoryRepository;
         this.bookPublisherRespository = bookPublisherRespository;
         this.genreRespository = genreRespository;
         this.brandRepository = brandRepository;

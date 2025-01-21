@@ -21,7 +21,7 @@ public class BookImage {
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id",nullable = false)
     private Book book;
 
 }

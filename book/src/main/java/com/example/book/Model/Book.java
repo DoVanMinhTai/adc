@@ -1,5 +1,6 @@
 package com.example.book.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -47,18 +48,17 @@ public class Book {
 
     private String authorName;
 
-    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "book",cascade = CascadeType.PERSIST)
     private List<BookCate> bookCate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "formatId", referencedColumnName = "id")
-    private BookFormat format;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "publisherId", referencedColumnName = "id")
     private BookPublisher publisher;
 
     @OneToMany(mappedBy = "book")
+    @JsonIgnore
     private List<BookRelated> bookRelated = new ArrayList<>();
 
     @OneToMany(mappedBy = "book")

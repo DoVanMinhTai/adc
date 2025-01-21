@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "bookgenre")
+@Table(name = "book_cate")
 public class BookCate {
     private static final long serialVersionUID = 1L;
 
@@ -12,13 +12,13 @@ public class BookCate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
+    @ManyToOne()
+    @JoinColumn(name = "book_id",nullable = false)
     @JsonIgnore
     private Book book;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cate_id")
+    @ManyToOne()
+    @JoinColumn(name = "cate_id",nullable = false)
     private Cate cate;
 
     public BookCate(long id, Book book, Cate cate) {

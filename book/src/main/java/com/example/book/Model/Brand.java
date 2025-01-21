@@ -3,6 +3,8 @@ package com.example.book.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Table(name = "brand")
 @Entity
 @AllArgsConstructor
@@ -19,6 +21,9 @@ public class Brand  extends AbstractAuditEntity{
     private String name;
     private String slug;
     private boolean isPublished;
+
+    @OneToMany(mappedBy = "brand")
+    private List<Book> books;
 
 
 
