@@ -1,18 +1,23 @@
 version: '3.9'
 
 services:
-  gatewayserver:
-    build:
-      context: ./gatewayserver
+  nginx:
+    image: nginx:1.27.2
+    container_name: nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/configuration/custom_proxy_settings.conf:/etc/nginx/conf.d/custom_proxy_settings.conf
     ports:
-      - "8082:8082"
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
+      - "80:80"
     networks:
-      - book-network
+      - adc-network
   identity:
     image: quay.io/keycloak/keycloak:26.0.2
+    container_name: identity
     command: 'start-dev --import-realm'
+    ports:
+      - "8080:8080"
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
@@ -21,18 +26,18 @@ services:
       KC_DB_USERNAME: admin
       KC_DB_PASSWORD: admin
       KC_HTTP_PORT: 8080
-    ports:
-      - "8080:8080"
     volumes:
       - ./identity/realm-export.json:/opt/keycloak/data/import/realm-export.json
+      - ./identity/themes/uithemes:/opt/keycloak/themes
     networks:
-      - book-network
+      - adc-network
 
   postgres:
     image: postgres:16-alpine
     hostname: ${POSTGRES_HOST}
+    container_name: postgres
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     volumes:
       - ./docker/postgres/postgresql.conf:/usr/share/postgresql/postgresql.conf
       - ./postgres_init.sql:/docker-entrypoint-initdb.d/postgres_init.sql
@@ -41,31 +46,31 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
     networks:
-      - book-network
+      - adc-network
 
   pgadmin:
     image: dpage/pgadmin4:6.14
+    container_name: pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@adc.com
       PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
     networks:
-      - book-network
+      - adc-network
     volumes:
       - pgadmin:/var/lib/pgadmin
-  book:
-    build:
-      context: ./book
-    ports:
-      - "8081:8081"
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/book
-    networks:
-      - book-network
+#  book:
+#    build:
+#      context: ./book
+#    ports:
+#      - "8081:8081"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=prod
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/book
+#    networks:
+#      - adc-network
 
   customer:
+    container_name: customer
     build:
       context: ./customer
     ports:
@@ -74,12 +79,13 @@ services:
        SPRING_PROFILES_ACTIVE: prod
        SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/customer
     networks:
-      - book-network
+      - adc-network
 
 
 networks:
-  book-network:
+  adc-network:
     driver: bridge
+    name: adc-network
 
 volumes:
   postgres:

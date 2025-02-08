@@ -1,0 +1,6 @@
+{
+  "themes": [{
+    "name" : "adc",
+    "types": [ "login" ]
+  }]
+}
