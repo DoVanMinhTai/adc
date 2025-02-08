@@ -27,8 +27,9 @@ public class SecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http
                 .authorizeExchange(auth -> auth
-                        .pathMatchers("/health", "/actuator/prometheus", "/actuator/health/**").permitAll()
-                        .anyExchange().hasAnyRole("ADMIN"))
+                        .pathMatchers("/profile/**").authenticated()
+                        .pathMatchers("/address/**").authenticated()
+                        .anyExchange().permitAll())
                 .oauth2Login(Customizer.withDefaults())
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
@@ -38,6 +39,7 @@ public class SecurityConfig {
                 )
                 .build();
     }
+
     private ServerLogoutSuccessHandler oidcLogoutSuccessHandler() {
         OidcClientInitiatedServerLogoutSuccessHandler oidcLogoutSuccessHandler =
                 new OidcClientInitiatedServerLogoutSuccessHandler(this.clientRegistrationRepository);

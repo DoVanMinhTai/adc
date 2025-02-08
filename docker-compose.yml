@@ -31,7 +31,18 @@ services:
       - ./identity/themes/uithemes:/opt/keycloak/themes
     networks:
       - adc-network
-
+  storefront:
+    build: ./storefrontbff
+    image: adc/storefront-bff:latest
+    entrypoint: ["./wait-for-it.sh", "identity:80", "--timeout=300", "--", "java", "-jar", "/app.jar"]
+    environment:
+      - SERVER_PORT
+    networks:
+      - adc-network
+  storefront-nextjs:
+    image: adc/storefront:latest
+    networks:
+      - adc-network
   postgres:
     image: postgres:16-alpine
     hostname: ${POSTGRES_HOST}
