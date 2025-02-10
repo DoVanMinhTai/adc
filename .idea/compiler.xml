@@ -10,6 +10,15 @@
         <module name="book" />
         <module name="customer" />
       </profile>
+      <profile name="Annotation profile for media" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="media" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="storefrontbff" target="17" />
@@ -19,6 +28,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="book" options="-parameters" />
       <module name="customer" options="-parameters" />
+      <module name="media" options="-parameters" />
       <module name="storefrontbff" options="-parameters" />
     </option>
   </component>
