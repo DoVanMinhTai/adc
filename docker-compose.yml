@@ -16,8 +16,6 @@ services:
     image: quay.io/keycloak/keycloak:26.0.2
     container_name: identity
     command: 'start-dev --import-realm'
-    ports:
-      - "8080:8080"
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
@@ -25,24 +23,25 @@ services:
       KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: admin
       KC_DB_PASSWORD: admin
-      KC_HTTP_PORT: 8080
+      KC_HTTP_PORT: 80
     volumes:
       - ./identity/realm-export.json:/opt/keycloak/data/import/realm-export.json
       - ./identity/themes/uithemes:/opt/keycloak/themes
     networks:
       - adc-network
-  storefront:
-    build: ./storefrontbff
-    image: adc/storefront-bff:latest
-    entrypoint: ["./wait-for-it.sh", "identity:80", "--timeout=300", "--", "java", "-jar", "/app.jar"]
-    environment:
-      - SERVER_PORT
-    networks:
-      - adc-network
-  storefront-nextjs:
-    image: adc/storefront:latest
-    networks:
-      - adc-network
+#  storefront:
+#    build: ./storefrontbff
+#    image: adc/storefront-bff:latest
+#    entrypoint: ["./wait-for-it.sh", "identity:80", "--timeout=300", "--", "java", "-jar", "/app.jar"]
+#    environment:
+#      - SERVER_PORT
+#    networks:
+#      - adc-network
+#  storefront-nextjs:
+#    build: ./storefront
+#    image: adc/storefront:latest
+#    networks:
+#      - adc-network
   postgres:
     image: postgres:16-alpine
     hostname: ${POSTGRES_HOST}
@@ -82,13 +81,12 @@ services:
 
   customer:
     container_name: customer
-    build:
-      context: ./customer
-    ports:
-      - "8090:8090"
+    build: ./customer
+    image: ghcr.io/nashtech-garage/yas-customer:latest
     environment:
-       SPRING_PROFILES_ACTIVE: prod
-       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/customer
+      - SPRING_DATASOURCE_URL= jdbc:postgresql://postgres:5432/customer
+      - SERVER_SERVLET_CONTEXT_PATH= /customer
+      - SERVER_PORT
     networks:
       - adc-network
 

@@ -11,12 +11,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1")
 public class CustomerController {
     private final CustomerService customerService;
 
@@ -24,21 +24,9 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @PostMapping("/customers")
-    public ResponseEntity<CustomerVm> createCustomer(@Valid @RequestBody CustomerPostVm customerPostVm) {
-        CustomerVm customerVm = customerService.create(customerPostVm);
-        return ResponseEntity.ok().body(customerVm);
+    @GetMapping("/storefront/customer/profile")
+    public ResponseEntity<CustomerVm> getUserProfile() {
+        return ResponseEntity.ok(
+                customerService.getCustomerProfilce(SecurityContextHolder.getContext().getAuthentication().getName()));
     }
-
-    @GetMapping("/findId")
-    public List<UserAddress> findUserAddress() {
-        return null;
-    }
-
-
-    @GetMapping("/api/v1/test")
-    public ResponseEntity<String> testEndpoint() {
-        return ResponseEntity.ok("Test successful");
-    }
-
 }

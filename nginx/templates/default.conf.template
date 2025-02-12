@@ -2,7 +2,9 @@ server {
     server_name api.adc.local;
     resolver 127.0.0.11;
 
-
+    location /customer/ {
+        proxy_pass http://customer;
+    }
 }
 
 
@@ -12,6 +14,8 @@ server {
     proxy_pass http://pgadmin;
   }
 }
+
+
 
 server {
   server_name identity;

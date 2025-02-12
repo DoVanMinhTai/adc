@@ -11,18 +11,18 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://localhost:8080/realms/Identity
+            issuer-uri: http://identity/realms/Identity
         registration:
           keycloak:
             provider: keycloak
             client-id: storefront-bff
-            client-secret: rNlTPrKe7WqDqJY6hU5ueJb8BCr3QDYj
+            client-secret: ZrU9I0q2uXBglBnmvyJdkl1lf0ncr8tn
             scope: openid, profile, email, roles
 ---
 spring:
   cloud:
     gateway:
-      routes:
+      routes: 
         - id: api
           uri: http://nginx
           predicates:
@@ -31,11 +31,11 @@ spring:
             - DedupeResponseHeader=Origin Access-Control-Request-Method Access-Control-Request-Headers
             - TokenRelay=
             - StripPrefix=1
-        - id: nextjs
-          uri: http://localhost:3000
-          predicates:
-            - Path=/**
+#        - id: nextjs
+#          uri: http://localhost:3000
+#          predicates:
+#            - Path=/**
 ---
 adc:
   services:
-    token-identity: http://localhost:8080/realms/Identity/protocol/openid-connect/token
+    token-identity: http://identity/realms/Identity/protocol/openid-connect/token

@@ -71,4 +71,8 @@ public class CustomerService {
 
         return CustomerVm.fromUserRepresentation(user);
     }
+
+    public CustomerVm getCustomerProfilce(String userId) {
+        return CustomerVm.fromUserRepresentation(keycloak.realm(keyCloakPropsConfig.getRealm()).users().get(userId).toRepresentation());
+    }
 }
