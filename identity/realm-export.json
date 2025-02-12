@@ -703,8 +703,18 @@
           "clientRole": true,
           "containerId": "1f35b220-b353-494a-a462-a09700c2c5ae",
           "attributes": {}
+        },
+        {
+          "id": "4ce54078-8a93-4155-9ba8-cd7fab17c24c",
+          "name": "view-groups",
+          "description": "${role_view-groups}",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "63a551a9-12e6-465b-9b06-83747ff64c8d",
+          "attributes": {}
         }
-      ]
+      ],
+      "swagger-ui": []
     }
   },
   "groups": [],
@@ -1449,6 +1459,102 @@
         "phone",
         "offline_access",
         "organization",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "id": "ce61ec4b-d4c5-477b-91c0-ebf1fd189bbd",
+      "clientId": "swagger-ui",
+      "name": "",
+      "description": "",
+      "rootUrl": "",
+      "adminUrl": "",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "redirectUris": [
+        "http://localhost:8081/*",
+        "http://localhost:8092/*",
+        "http://localhost:8080/*",
+        "http://localhost:8091/*",
+        "http://localhost:8083/*",
+        "http://localhost:8093/*",
+        "http://api.yas.local/*",
+        "http://localhost:8090/*",
+        "http://localhost:8089/*",
+        "http://localhost:8088/*",
+        "http://localhost:8085/*",
+        "http://localhost:8084/*",
+        "http://localhost:8086/*",
+        "http://localhost:8092/*"
+      ],
+      "webOrigins": [
+        "http://api.yas.local",
+        "http://localhost:8088",
+        "http://localhost:8089",
+        "http://localhost:8084",
+        "http://localhost:8083",
+        "http://localhost:8086",
+        "http://localhost:8085",
+        "http://localhost:8080",
+        "http://localhost:8091",
+        "http://localhost:8090",
+        "http://localhost:8093",
+        "http://localhost:8081",
+        "http://localhost:8092"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "saml.force.post.binding": "false",
+        "saml.multivalued.roles": "false",
+        "post.logout.redirect.uris": "+",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "use.refresh.tokens": "true",
+        "oidc.ciba.grant.enabled": "false",
+        "backchannel.logout.session.required": "true",
+        "client_credentials.use_refresh_token": "false",
+        "require.pushed.authorization.requests": "false",
+        "saml.client.signature": "false",
+        "id.token.as.detached.signature": "false",
+        "saml.assertion.signature": "false",
+        "client.secret.creation.time": "1694600852",
+        "saml.encrypt": "false",
+        "saml.server.signature": "false",
+        "exclude.session.state.from.auth.response": "false",
+        "saml.artifact.binding": "false",
+        "saml_force_name_id_format": "false",
+        "acr.loa.map": "{}",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "saml.authnstatement": "false",
+        "display.on.consent.screen": "false",
+        "token.response.type.bearer.lower-case": "false",
+        "saml.onetimeuse.condition": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "web-origins",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
         "microprofile-jwt"
       ]
     }

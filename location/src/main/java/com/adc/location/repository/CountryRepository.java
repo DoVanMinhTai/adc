@@ -1,4 +1,7 @@
 package com.adc.location.repository;
 
-public interface CountryRepository {
+import com.adc.location.model.Country;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CountryRepository extends JpaRepository<Country, Long> {
 }

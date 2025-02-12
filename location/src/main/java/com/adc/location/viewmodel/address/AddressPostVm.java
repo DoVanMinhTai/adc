@@ -1,4 +1,4 @@
-package com.adc.location.viewmodel;
+package com.adc.location.viewmodel.address;
 
 import com.adc.location.model.Address;
 import jakarta.validation.constraints.NotNull;
