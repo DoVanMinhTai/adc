@@ -36,17 +36,37 @@ public class AddressService {
     }
 
     public void updateAddress(Long id, @Valid AddressPostVm dto) {
+        Address address = addressRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Address not found")
+        );
+        address.setContactName(dto.contactName());
+        address.setAddressLine1(dto.addressLine1());
+        address.setAddressLine2(dto.addressLine2());
+        address.setPhone(dto.phone());
+        address.setCity(dto.city());
+        address.setZipCode(dto.zipCode());
+        stateOrProvinceRepository.findById(dto.stateOrProvinceId()).ifPresent(address::setStateOrProvince);
+        districtRepository.findById(dto.districtId()).ifPresent(address::setDistrict);
+        countryRepository.findById(dto.countryId()).ifPresent(address::setCountry);
+        addressRepository.save(address);
     }
 
     public AddressDetailVm getAddressById(Long id) {
-        return null;
+        Address address = addressRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Address not found")
+        );
+        return AddressDetailVm.fromModel(address);
     }
 
     public List<AddressDetailVm> getAddressList(List<Long> ids) {
-        return null;
+        List<Address> addresses = addressRepository.findAddressByIdIn(ids);
+        return addresses.stream().map(AddressDetailVm::fromModel).toList();
     }
 
     public void deleteAddress(Long id) {
-
+        Address address = addressRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("Address not found")
+        );
+        addressRepository.delete(address);
     }
 }
