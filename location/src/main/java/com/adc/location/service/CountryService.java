@@ -21,9 +21,7 @@ public class CountryService {
 
     @Transactional(readOnly = true)
     public List<CountryVm> listAllCountry() {
-        return countryRepository.findAll(Sort.by(Sort.Direction.ASC,"name"))
-                .stream()
-                .map(countryMapper::toCountryViewModelFromCountry).toList();
+        return null;
     }
 
     public CountryListGetVm getPageableCountries(int pageNo, int pageSize) {
