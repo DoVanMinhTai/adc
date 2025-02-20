@@ -25,14 +25,38 @@ public class Checkout {
 
     private String email;
 
+    private String note;
+
+    @Column(name = "promotion_code")
+    private String promotionCode;
+
+    @Column(name = "state")
     @Enumerated(EnumType.STRING)
     private CheckoutState checkoutState;
 
-    private BigDecimal totalAmount;
+    @SuppressWarnings("unused")
+    private String customerId;
 
+    @SuppressWarnings("unused")
+    private String shipmentMethodId;
+
+    @Column(name = "payment_method_id")
     private String paymentMethodId;
 
+    @SuppressWarnings("unused")
     private Long shippingAddressId;
+
+    @SuppressWarnings("unused")
+    @Builder.Default
+    private BigDecimal totalAmount = BigDecimal.ZERO;
+
+    @SuppressWarnings("unused")
+    @Builder.Default
+    private BigDecimal totalShipmentFee = BigDecimal.ZERO;
+
+    @SuppressWarnings("unused")
+    @Builder.Default
+    private BigDecimal totalDiscountAmount = BigDecimal.ZERO;
 
     @OneToMany(mappedBy = "checkout", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference

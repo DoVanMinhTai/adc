@@ -19,7 +19,7 @@
         </processorPath>
         <module name="media" />
       </profile>
-      <profile name="Annotation profile for order" enabled="true">
+      <profile name="Annotation profile for adc" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -30,8 +30,9 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
         <module name="location" />
-        <module name="order" />
+        <module name="common-library" />
         <module name="book" />
+        <module name="order" />
       </profile>
     </annotationProcessing>
   </component>
@@ -39,6 +40,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="adc" options="" />
       <module name="book" options="-parameters" />
+      <module name="common-library" options="-parameters" />
       <module name="customer" options="-parameters" />
       <module name="location" options="-parameters" />
       <module name="media" options="-parameters" />
