@@ -26,7 +26,7 @@ public class AuthenticationUtils    {
         return token.getToken().getSubject();
     }
 
-    public static String extractToken()  {
+    public static String extractJwt()  {
         return ((Jwt) getAuthentication().getPrincipal()).getTokenValue();
     }
 

@@ -1,5 +1,7 @@
 package com.adc.order.viewmodel.checkout;
 
+import jakarta.validation.constraints.NotEmpty;
+
 import java.util.List;
 
 public record CheckoutPostVm(
@@ -8,7 +10,8 @@ public record CheckoutPostVm(
         String promotionCode,
         String shipmentMethodId,
         String paymentMethodId,
-        String shippingAddressId,
+        Long shippingAddressId,
+        @NotEmpty(message = "Checkout item must not be empty")
         List<CheckOutItemPostVm> checkOutItemPostVms
 ) {
 }

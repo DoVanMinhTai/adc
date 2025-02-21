@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Table(name = "checkout_item")
@@ -12,7 +13,7 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 public class CheckoutItem {
 
     @Id
@@ -23,6 +24,9 @@ public class CheckoutItem {
 
     private String productName;
 
+    @SuppressWarnings("unsed")
+    private String description;
+    
     private int quantity;
 
     private BigDecimal productPrice;
@@ -33,5 +37,16 @@ public class CheckoutItem {
     @JoinColumn(name = "checkout_id",nullable = false)
     @JsonBackReference
     private Checkout checkout;
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof CheckoutItem that)) return false;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
 

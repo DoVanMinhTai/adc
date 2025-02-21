@@ -4,5 +4,5 @@ import com.adc.order.model.CheckoutItem;
 import com.adc.order.model.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderItemRepository extends JpaRepository<OrderItem,Long> {
+public interface OrderItemRepository {
 }

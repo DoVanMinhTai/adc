@@ -68,16 +68,15 @@ services:
       - adc-network
     volumes:
       - pgadmin:/var/lib/pgadmin
-#  book:
-#    build:
-#      context: ./book
-#    ports:
-#      - "8081:8081"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=prod
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/book
-#    networks:
-#      - adc-network
+  product:
+    build:
+      context: ./product
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/book
+      - SERVER_SERVLET_CONTEXT_PATH=/product
+      - SERVER_PORT
+    networks:
+      - adc-network
 
   customer:
     container_name: customer

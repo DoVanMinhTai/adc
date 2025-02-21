@@ -5,6 +5,9 @@ server {
     location /customer/ {
         proxy_pass http://customer;
     }
+    location /product/ {
+        proxy_pass http://product;
+    }
 }
 
 
