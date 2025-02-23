@@ -19,6 +19,7 @@
 		<module>order</module>
 		<module>common-library</module>
 		<module>product</module>
+		<module>customer</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

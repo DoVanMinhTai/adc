@@ -5,6 +5,8 @@ import com.adc.product.respository.*;
 
 import com.adc.product.viewmodel.BookListGetVM;
 import com.adc.product.viewmodel.BookListVM;
+import com.adc.product.viewmodel.ProductCheckoutListVm;
+import com.adc.product.viewmodel.ProductGetCheckoutListVm;
 import jakarta.ws.rs.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -64,4 +66,26 @@ public class BookService {
     }
 
 
+    public ProductGetCheckoutListVm getProductCheckoutList(int pageNo, int pageSize, List<Long> productIds) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Page<Book> productPage = bookRepository.findAllPublishedProductsByIds(productIds, pageable);
+
+        List<ProductCheckoutListVm> productCheckoutListVms = productPage.getContent()
+                .stream().map(product -> {
+//                    String thumbnailUrl = mediaService.getMedia(product.getThumbnailMediaId()).url();
+                    ProductCheckoutListVm productCheckoutListVm = ProductCheckoutListVm.fromModel(product);
+//                    if (StringUtils.isNotEmpty(thumbnailUrl)) {
+//                        return productCheckoutListVm.toBuilder().thumbnailUrl(thumbnailUrl).build();
+//                    }
+                    return productCheckoutListVm;
+                }).toList();
+        return new ProductGetCheckoutListVm(
+                productCheckoutListVms,
+                productPage.getNumber(),
+                productPage.getSize(),
+                (int) productPage.getTotalElements(),
+                productPage.getTotalPages(),
+                productPage.isLast()
+        );
+    }
 }

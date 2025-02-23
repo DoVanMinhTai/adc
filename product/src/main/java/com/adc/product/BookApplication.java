@@ -3,7 +3,7 @@ package com.adc.product;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.adc.product")
 public class BookApplication {
 
 	public static void main(String[] args) {
