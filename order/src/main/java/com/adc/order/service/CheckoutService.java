@@ -10,11 +10,9 @@ import com.adc.order.model.OrderItem;
 import com.adc.order.model.enumeration.CheckoutState;
 import com.adc.order.repository.CheckoutRepository;
 import com.adc.order.utils.Constants;
-import com.adc.order.viewmodel.checkout.CheckOutItemPostVm;
-import com.adc.order.viewmodel.checkout.CheckoutItemVm;
-import com.adc.order.viewmodel.checkout.CheckoutPostVm;
-import com.adc.order.viewmodel.checkout.CheckoutVm;
+import com.adc.order.viewmodel.checkout.*;
 import com.adc.order.viewmodel.product.ProductCheckoutListVm;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.adc.order.utils.Constants.ErrorCode.CHECKOUT_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -95,6 +95,18 @@ public class CheckoutService {
                         .productPrice(BigDecimal.valueOf(product.getPrice()))
                         .build();
         }).toList();
+
+    }
+
+    public void updateCheckoutPaymentMethod(String id, @Valid CheckoutPaymentMethodPutVm checkoutPaymentMethodPutVm) {
+        Checkout checkout = checkoutRepository.findById(id).orElseThrow(() -> new NotFoundException(CHECKOUT_NOT_FOUND, id));
+        checkout.setPaymentMethodId(checkoutPaymentMethodPutVm.paymentMethodId());
+        log.info(Constants.MessageCode.UPDATE_CHECKOUT_PAYMENT,
+                checkout.getId(),
+                checkoutPaymentMethodPutVm.paymentMethodId(),
+                checkout.getPaymentMethodId()
+        );
+        checkoutRepository.save(checkout);
 
     }
 }
