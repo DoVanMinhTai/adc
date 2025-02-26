@@ -5,6 +5,7 @@ import com.adc.product.model.Book;
 import com.adc.product.model.PaginatedItems;
 import com.adc.product.service.BookService;
 import com.adc.product.viewmodel.BookListGetVM;
+import com.adc.product.viewmodel.BookListVM;
 import com.adc.product.viewmodel.ProductGetCheckoutListVm;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,6 +62,11 @@ public class BookController {
             @RequestParam(value = "pageSize", defaultValue = "20", required = false) int pageSize,
             @RequestParam(value = "ids", required = false) List<Long> productIds) {
         return ResponseEntity.ok(productService.getProductCheckoutList(pageNo, pageSize, productIds));
+    }
+
+    @GetMapping("/productsBestSelling")
+    public ResponseEntity<List<BookListVM>>  getProductBestSelling(){
+        return ResponseEntity.ok(productService.getProductByIdAndCompleted());
     }
 
 

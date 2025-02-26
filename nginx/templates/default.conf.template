@@ -16,7 +16,7 @@ server {
 
 
 server {
-  server_name pgadmin;
+  server_name pgadmin.adc.local;
   location / {
     proxy_pass http://pgadmin;
   }

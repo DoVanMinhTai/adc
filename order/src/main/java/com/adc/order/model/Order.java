@@ -12,7 +12,7 @@ import org.hibernate.type.SqlTypes;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`orders`")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

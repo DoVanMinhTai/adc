@@ -8,6 +8,7 @@ import com.adc.product.viewmodel.BookListVM;
 import com.adc.product.viewmodel.ProductCheckoutListVm;
 import com.adc.product.viewmodel.ProductGetCheckoutListVm;
 import jakarta.ws.rs.NotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,20 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class BookService {
     private final BookRepository bookRepository;
     private final BookCategoryRepository bookCategoryRepository;
     private final BookPublisherRespository bookPublisherRespository;
     private final GenreRespository genreRespository;
     private final BrandRepository brandRepository;
+    private final OrderService orderService;
 
-    public BookService(BookRepository bookRepository, BookCategoryRepository bookCategoryRepository, BookPublisherRespository bookPublisherRespository, GenreRespository genreRespository, BrandRepository brandRepository) {
-        this.bookRepository = bookRepository;
-        this.bookCategoryRepository = bookCategoryRepository;
-        this.bookPublisherRespository = bookPublisherRespository;
-        this.genreRespository = genreRespository;
-        this.brandRepository = brandRepository;
-    }
+
 
     public PaginatedItems<Book> getBooks(int pageIndex, int pageSize) {
         Pageable pageable = PageRequest.of(pageIndex, pageSize);
@@ -87,5 +84,11 @@ public class BookService {
                 productPage.getTotalPages(),
                 productPage.isLast()
         );
+    }
+    public List<BookListVM> getProductByIdAndCompleted() {
+        List<Long> productIds = orderService.getProductByIdAndCompleted();
+        List<Book> result = bookRepository.findAllById(productIds);
+
+        return result.stream().map(BookListVM::fromModel).toList();
     }
 }

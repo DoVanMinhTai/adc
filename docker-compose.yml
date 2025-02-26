@@ -66,8 +66,6 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     networks:
       - adc-network
-    volumes:
-      - pgadmin:/var/lib/pgadmin
   product:
     build: ./product
     image: adc/product:latest
