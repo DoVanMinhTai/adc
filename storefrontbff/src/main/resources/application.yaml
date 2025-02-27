@@ -31,10 +31,10 @@ spring:
             - DedupeResponseHeader=Origin Access-Control-Request-Method Access-Control-Request-Headers
             - TokenRelay=
             - StripPrefix=1
-#        - id: nextjs
-#          uri: http://localhost:3000
-#          predicates:
-#            - Path=/**
+        - id: nextjs
+          uri: http://localhost:3000
+          predicates:
+            - Path=/**
 ---
 adc:
   services:

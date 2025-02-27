@@ -19,12 +19,12 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class OrderService {
+public class OrderService extends  AbstractCircuitBreakFallbackHandler {
     private final RestClient restClient;
     private final ServiceUrlConfig serviceUrlConfig;
 
     @Retry(name = "restApi")
-//    @CircuitBreaker(name = "restCircuitBreaker", fallbackMethod = "handleProductInfomationFallback")
+    @CircuitBreaker(name = "restCircuitBreaker", fallbackMethod = "handleProductInfomationFallback")
     public List<Long> getProductByIdAndCompleted() {
         final String jwt = AuthenticationUtils.extractJwt();
         final URI orderServiceUrl = UriComponentsBuilder.fromHttpUrl(serviceUrlConfig.order())
@@ -40,4 +40,9 @@ public class OrderService {
                 .getBody();
 
     }
+    public List<Long> handleProductInfomationFallback(Exception ex) {
+        log.error("⚠️ Fallback method triggered due to: {}", ex.getMessage());
+        return List.of(); // Trả về danh sách rỗng thay vì lỗi
+    }
+
 }

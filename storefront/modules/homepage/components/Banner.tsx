@@ -14,8 +14,8 @@ const Banner = () => {
                 <Carousel>
                     {listMainBanner.map((item,index) => (
 
-                 
                     <ImageWithFallBack src={item} alt={`Banner  ${index + 1}`} />
+                    
                 ))}
                 </Carousel>
             </Container>

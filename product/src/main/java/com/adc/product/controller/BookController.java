@@ -64,7 +64,7 @@ public class BookController {
         return ResponseEntity.ok(productService.getProductCheckoutList(pageNo, pageSize, productIds));
     }
 
-    @GetMapping("/productsBestSelling")
+    @GetMapping("/storefront/products/productsBestSelling")
     public ResponseEntity<List<BookListVM>>  getProductBestSelling(){
         return ResponseEntity.ok(productService.getProductByIdAndCompleted());
     }

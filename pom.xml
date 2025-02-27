@@ -14,8 +14,8 @@
 	<packaging>pom</packaging>
 	<name>adc</name>
 	<modules>
-		<module>location</module>
-		<module>storefrontbff</module>
+<!--		<module>location</module>-->
+<!--		<module>storefrontbff</module>-->
 		<module>order</module>
 		<module>common-library</module>
 		<module>product</module>

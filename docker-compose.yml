@@ -29,14 +29,16 @@ services:
       - ./identity/themes/uithemes:/opt/keycloak/themes
     networks:
       - adc-network
-#  storefront:
-#    build: ./storefrontbff
-#    image: adc/storefront-bff:latest
-#    entrypoint: ["./wait-for-it.sh", "identity:80", "--timeout=300", "--", "java", "-jar", "/app.jar"]
-#    environment:
-#      - SERVER_PORT
-#    networks:
-#      - adc-network
+  storefront:
+    build: ./storefrontbff
+    image: adc/storefront-bff:latest
+    entrypoint: ["./wait-for-it.sh", "identity:80", "--timeout=300", "--", "java", "-jar", "/app.jar"]
+    environment:
+      - SERVER_PORT
+      - ADC_SERVICES_CUSTOMER
+      - ADC_SERVICES_ORDER
+    networks:
+      - adc-network
 #  storefront-nextjs:
 #    build: ./storefront
 #    image: adc/storefront:latest
@@ -68,6 +70,7 @@ services:
       - adc-network
   product:
     build: ./product
+    container_name: product
     image: adc/product:latest
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/book
