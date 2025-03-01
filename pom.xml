@@ -15,9 +15,9 @@
 	<name>adc</name>
 	<modules>
 <!--		<module>location</module>-->
-<!--		<module>storefrontbff</module>-->
-		<module>order</module>
 		<module>common-library</module>
+		<module>storefrontbff</module>
+		<module>order</module>
 		<module>product</module>
 		<module>customer</module>
 	</modules>

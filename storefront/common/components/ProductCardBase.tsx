@@ -1,39 +1,35 @@
 import React from 'react'
 import { formatPrice } from '@/utils/formatPrice';
+import ImageWithFallBack from './ImageWithFallBack';
+import Link from 'next/link';
 interface ProductCardBase {
-    product?: {
-        name?: string | null;
-        price?: number | null;
-        slug?: string | null;
-    } | null;
-    thumbnailUrl?: string | null;
-    className?: string[] | null;
+    product: {
+        name: string  ;
+        price: number  ;
+        slug: string  ;
+    };
+    thumbnailUrl: string ;
 }
 
 
-const ProductCardBase: React.FC<ProductCardBase> = ({product,thumbnailUrl,className}) => {
-  return (
-    <>
-      <div className="product-small box" style={{border: '1px solid #e5e5e5;'}}>
-                            <a href="" style={{ marginLeft: 'auto', marginRight: 'auto'}}>
-                                <div className="box-image">
-                                    <img width="247" height="296"
-                                        src="https://banhsinhnhat.com/media/cache/21/b1/21b199ed68dd9b65b4f579e00cbe38aa.jpg"
-                                        alt="" style={{ width: '100%' }}/>
-                                </div>
-                                <div className="box-text text-center">
-                                    <div className="title-wrapper">
-                                        <p style={{ paddingTop: '10px' }}>
-                                            <span className="s3_c">{product?.name}</span>
-                                            {/* <span className="s3_c text-fontweight">{formatPrice(product?.price)}</span> */}
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+const ProductCardBase: React.FC<ProductCardBase> = ({ product, thumbnailUrl }) => {
+    return (
+        <>
+            <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
+                <div className="border rounded-lg p-4 shadow-md">
+                    <Link href={`/products/${product.slug}`}>
+                    <ImageWithFallBack src={thumbnailUrl} alt={product.name} />
+                    <h2 className="text-lg font-semibold mt-2">"123</h2>
+                    <p className="text-gray-500">{formatPrice(product.price)}</p>
+                    </Link>
+                    <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md">
+                        Thêm vào giỏ Hàng
+                    </button>
+                </div>
+            </div>
 
-    </>
-  )
+        </>
+    )
 }
 
 export default ProductCardBase

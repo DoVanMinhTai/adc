@@ -22,4 +22,5 @@ public class CountryController {
             @RequestParam(value = "pageSize", defaultValue = "10", required = false)
             final int pageSize) {
         return ResponseEntity.ok(countryService.getPageableCountries(pageNo, pageSize));
+    }
 }

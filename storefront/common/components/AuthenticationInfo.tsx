@@ -1,71 +1,70 @@
-import React from 'react'
-import { useState,useEffect } from 'react';
 import Link from 'next/link';
-import { Button, ButtonGroup, Dropdown, DropdownMenu, DropdownToggle } from 'react-bootstrap';
-const AuthenticationInfo = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    type AuthenticatedUser ={
-        username: string;
-    }
-    type AuthenticationInfoVm = {
-        isAuthenticated: boolean;
-        authenticatedUser: AuthenticatedUser;
-    }
-    const [authenticationInfoVm,setAuthenticationInfoVm] = useState<AuthenticationInfoVm>( {
-        isAuthenticated: false,
-        authenticatedUser: {username: ''},
-    })
-    async function getAuthenticationInfo(): Promise<AuthenticationInfoVm> {
-        const res = await fetch('/authentication');
-        return await res.json();   
-    }
-    useEffect(() => {
-        getAuthenticationInfo().then((data) => {
-            setAuthenticationInfoVm(data);
-        })
-    },[])
-    return (
-        
+import { useEffect, useState } from 'react';
 
-                // <div className="dropdown">
-                //                     <button className="btn btn-secondary dropdown-toggle">Tài Khoản</button>
-                //                     <ul className="dropdown-menu">
-                //                         {isLoggedIn ? (
-                //                             <li>
-                //                                 <a className="dropdown-item" href="SignIn.html">Đăng Xuất</a>
-                //                             </li>
-                //                         ) : (
-                //                             <>                                            <li>
-                //                                 <a className="dropdown-item" href="SignIn.html">Đăng Nhập</a>
-                //                             </li>
-                //                                 <li>
-                //                                     <a className="dropdown-item" href="SignUp.html">Đăng Ký</a>
-                //                                 </li>
-                //                             </>
-                //                         )}
+export default function AuthenticationInfo() {
+  type AuthenticatedUser = {
+    username: string;
+  };
 
-                //                     </ul>
-                //                 </div>
-             
-                <>
-                                {authenticationInfoVm.isAuthenticated ? (
-                                       <Dropdown as={ButtonGroup}>
-                    <Dropdown.Toggle split variant="secondary" id="dropdown-split-basic">
-                        {authenticationInfoVm.authenticatedUser.username}
-                    </Dropdown.Toggle>
+  type AuthenticationInfoVm = {
+    isAuthenticated: boolean;
+    authenticatedUser: AuthenticatedUser;
+  };
 
-                    <Dropdown.Menu>
-                                    
-                    </Dropdown.Menu>
-                </Dropdown>
-                                ) : (
-                                    <div>
-                                        <Link href="/autho">Login</Link>
-                                    </div>
-                      )}
-                </>
+  const [authenticatedInfoVm, setAuthenticatedInfoVm] = useState<AuthenticationInfoVm>({
+    isAuthenticated: false,
+    authenticatedUser: { username: '' },
+  });
 
-            );
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  async function getAuthenticationInfo(): Promise<AuthenticationInfoVm> {
+    const res = await fetch(`/authentication`);
+    return await res.json();
+  }
+
+  useEffect(() => {
+    getAuthenticationInfo().then((data) => {
+      setAuthenticatedInfoVm(data);
+    });
+  }, []);
+
+  return (
+    <div className="">
+      {/* {authenticatedInfoVm.isAuthenticated ? ( */}
+        <div className="">
+          {/* Nút mở dropdown */}
+          <button
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="bg-slate-800 px-4 py-2 rounded-lg text-white focus:outline-none "
+          >
+            Tài Khoản
+          </button>
+
+          {/* Dropdown Menu */}
+          {dropdownOpen && (
+            <div className="absolute mt-1 bg-gray-800 text-white rounded-md shadow-lg ">
+                <div>
+                Xin Chào: {authenticatedInfoVm.authenticatedUser.username}
+
+                </div>
+              <Link href="/profile" className="block px-4 py-2 hover:bg-gray-700">
+                Profile
+              </Link>
+              <Link href="/my-orders" className="block px-4 py-2 hover:bg-gray-700">
+                My Orders
+              </Link>
+              <Link href="/logout" className="block px-4 py-2 hover:bg-gray-700">
+                Logout
+              </Link>
+            </div>
+          )}
+        </div>
+      {/* ) : ( */}
+        {/* <Link href="/oauth2/authorization/keycloak" className="text-gray-300 hover:text-white">
+          Login
+        </Link> */}
+      {/* )} */}
+    </div>
+  );
 }
-
-export default AuthenticationInfo

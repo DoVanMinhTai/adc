@@ -20,14 +20,17 @@ public class SecurityConfig {
 
     @Bean
      SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(
-                auth -> auth.requestMatchers(
-                        "/swagger-ui","/swagger-ui/**","/v3/api-docs/**"   ).permitAll()
-                        .anyRequest().authenticated()
-        ).oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
-                .build();
-    }
+//        return http.authorizeHttpRequests(
+//                auth -> auth.requestMatchers(
+//                        "/swagger-ui","/swagger-ui/**","/v3/api-docs/**"   ).permitAll()
+//                        .requestMatchers("/orders/completed/products").permitAll()
+//                        .anyRequest().authenticated()
+//        ).oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+//                .build();
+        return http.authorizeHttpRequests(auth -> auth.anyRequest()
+                .permitAll()).build();
 
+    }
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverterForKeycloak() {
         Converter<Jwt, Collection<GrantedAuthority>> jwtGrantedAuthoritiesConverter = jwt -> {

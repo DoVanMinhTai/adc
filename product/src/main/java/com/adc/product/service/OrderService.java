@@ -26,7 +26,6 @@ public class OrderService extends  AbstractCircuitBreakFallbackHandler {
     @Retry(name = "restApi")
     @CircuitBreaker(name = "restCircuitBreaker", fallbackMethod = "handleProductInfomationFallback")
     public List<Long> getProductByIdAndCompleted() {
-        final String jwt = AuthenticationUtils.extractJwt();
         final URI orderServiceUrl = UriComponentsBuilder.fromHttpUrl(serviceUrlConfig.order())
                 .path("/orders/completed/products")
                 .build().toUri();
@@ -34,7 +33,6 @@ public class OrderService extends  AbstractCircuitBreakFallbackHandler {
 
         return restClient.get()
                 .uri(orderServiceUrl)
-                .headers(h -> h.setBearerAuth(jwt))
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<List<Long>>() {})
                 .getBody();

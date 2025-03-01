@@ -31,6 +31,7 @@ services:
       - adc-network
   storefront:
     build: ./storefrontbff
+    container_name: storefrontbff
     image: adc/storefront-bff:latest
     entrypoint: ["./wait-for-it.sh", "identity:80", "--timeout=300", "--", "java", "-jar", "/app.jar"]
     environment:
@@ -68,27 +69,27 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     networks:
       - adc-network
-  product:
-    build: ./product
-    container_name: product
-    image: adc/product:latest
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/book
-      - SERVER_SERVLET_CONTEXT_PATH=/product
-      - SERVER_PORT
-    networks:
-      - adc-network
-
-  customer:
-    container_name: customer
-    build: ./customer
-    image: adc/customer:latest
-    environment:
-      - SPRING_DATASOURCE_URL= jdbc:postgresql://postgres:5432/customer
-      - SERVER_SERVLET_CONTEXT_PATH= /customer
-      - SERVER_PORT
-    networks:
-      - adc-network
+#  product:
+#    build: ./product
+#    container_name: product
+#    image: adc/product:latest
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/book
+#      - SERVER_SERVLET_CONTEXT_PATH=/product
+#      - SERVER_PORT
+#    networks:
+#      - adc-network
+#
+#  customer:
+#    container_name: customer
+#    build: ./customer
+#    image: adc/customer:latest
+#    environment:
+#      - SPRING_DATASOURCE_URL= jdbc:postgresql://postgres:5432/customer
+#      - SERVER_SERVLET_CONTEXT_PATH= /customer
+#      - SERVER_PORT
+#    networks:
+#      - adc-network
   swagger-ui:
     image: swaggerapi/swagger-ui:v5.17.14
     environment:
