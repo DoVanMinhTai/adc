@@ -3,7 +3,7 @@ import React from 'react'
 const FeturedProduct = () => {
   return (
     <div>
-      <div className="container w-full px-2">
+      <div className="container mx-auto w-full px-2">
         <div className="text-center">Sản phẩm tương tự</div>
         <div className="flex flex-wrap">
           <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">

@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Header from './common/Header'
 import AuthenticationInfo from './AuthenticationInfo'
+import Footer from './common/Footer'
 
 type Props =  {
     children:  React.ReactNode;
@@ -15,10 +16,10 @@ const Layout = ({children} : Props) => {
             <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header>
-                <AuthenticationInfo />
+                {/* <AuthenticationInfo /> */}
             </Header>
             <div className="body">{children}</div>
-
+            <Footer />
         </>
 
     )

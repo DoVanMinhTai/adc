@@ -10,7 +10,7 @@ import AuthenticationInfo from '../AuthenticationInfo';
 
 const Header = () => {
     return (
-        <header>
+        <header >
             {/* Header Top */}
             <div className="header-wrapper">
                 <div className="header-top bg-[#161519] text-white flex">
@@ -51,7 +51,7 @@ const Header = () => {
             </div>
 
             {/* Header Center */}
-            <div className="w-full my-1">
+            <div className="w-full my-1 mx-auto container">
                 <div className="container w-full">
                     <div className="flex p-0 m-0 w-full  gap-3">
                         <div className="p-0 m-0 rounded-lg border-gray-500 border-3">
