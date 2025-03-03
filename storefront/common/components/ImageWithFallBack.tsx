@@ -51,7 +51,6 @@ const ImageWithFallBack = ({
     )
 }
 
-ImageWithFallBack.propTypes = {}
 
 export default ImageWithFallBack
 

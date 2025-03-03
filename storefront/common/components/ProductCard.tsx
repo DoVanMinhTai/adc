@@ -10,6 +10,7 @@ export interface Props {
 
 export default function ProductCard({ product, thumbnailId }: Props) {
     const [thumbnailUrl,setThumbnailUrl] = useState<string>(thumbnailId ? '' : product.thumbnailUrl)
+    console.log(thumbnailUrl);
     
     return (
         <div>
