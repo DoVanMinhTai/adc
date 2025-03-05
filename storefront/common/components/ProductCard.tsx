@@ -9,12 +9,13 @@ export interface Props {
 }
 
 export default function ProductCard({ product, thumbnailId }: Props) {
+     console.log("🚀 Product received:", product);
+    console.log("🚀 Thumbnail ID:", thumbnailId);
+
     const [thumbnailUrl,setThumbnailUrl] = useState<string>(thumbnailId ? '' : product.thumbnailUrl)
-    console.log(thumbnailUrl);
+    console.log("object",product);
     
     return (
-        <div>
             <ProductCardBase product={product} thumbnailUrl={thumbnailUrl} />
-        </div>
     )
 }

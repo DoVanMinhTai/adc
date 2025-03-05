@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MediaController {
     private final MediaService mediaService;
 
-    @GetMapping("/media/{id}")
+    @GetMapping("/medias/{id}")
     public ResponseEntity<MediaVm> getMediaById(@PathVariable Long id) {
         return ResponseEntity.ok(mediaService.getMediaById(id)  );
     }

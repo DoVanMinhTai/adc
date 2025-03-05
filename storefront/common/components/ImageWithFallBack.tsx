@@ -20,7 +20,7 @@ const ImageWithFallBack = ({
     alt,
     className,
     style,
-    fallback: customFallBack = '/static/images/default-fallback-image.png', ...props
+    fallback: customFallBack = '/static/images/default-fallback-image.jpg', ...props
 
 }: Props) => {
     const [fallBack, setFallBack] = useState<string | null>(null);

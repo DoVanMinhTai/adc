@@ -46,7 +46,7 @@ public class Book {
     private Double itemWeight;
 
     private String authorName;
-
+    private Long thumbnailMediaId;
     @OneToMany(mappedBy = "book",cascade = CascadeType.PERSIST)
     private List<BookCate> bookCate;
 

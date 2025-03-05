@@ -28,7 +28,7 @@ public class MediaServiceImpl implements MediaService {
         MediaDto.MediaDtoBuilder builder = MediaDto.builder();
 
         Media media = mediaRepository.findById(id).orElse(null);
-        if (fileName.equalsIgnoreCase(media.getFileName()) || media == null) {
+        if (!fileName.equalsIgnoreCase(media.getFileName()) || media == null) {
             return builder.build();
         }
         MediaType mediaType = MediaType.valueOf(media.getMediaType());
@@ -39,17 +39,23 @@ public class MediaServiceImpl implements MediaService {
     @Override
     public MediaVm getMediaById(Long id) {
         MetaData metaData = mediaRepository.findByIdWithoutFileInReturn(id);
-        if(metaData == null) {
-            new ChangeSetPersister.NotFoundException();
-        }
-        String url = getUrlById(metaData.id(),metaData.fileName());
-        return new MediaVm(metaData.id(), metaData.caption(), metaData.fileName(), metaData.mediaType(),url);
+        System.out.println(metaData);
+//        if(metaData == null) {
+//            new ChangeSetPersister.NotFoundException();
+//        }
+        String url = getMediaUrl(metaData.id(),metaData.fileName());
+
+        return new MediaVm(metaData.id(), metaData.caption(),
+                metaData.fileName(), metaData.mediaType(),
+                url);
     }
 
-    private String getUrlById(Long id, String fileName) {
+    private String getMediaUrl(Long id, String fileName) {
+        System.out.println(id + " " + fileName);
         return UriComponentsBuilder.fromUriString(adcConfig.url())
-                .path(String.format("/media/{id}/file/{name}"))
+                .path(String.format("media/medias/{id}/file/{name}"))
                 .buildAndExpand(id,fileName).toUriString();
+
     }
 
 

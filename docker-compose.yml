@@ -99,7 +99,17 @@ services:
 #      - OAUTH_USE_PKCE=true
 #    networks:
 #      - adc-network
-
+  media:
+    container_name: media
+    build: ./media
+    image: adc/media:latest
+    environment:
+      - SPRING_DATASOURCE_URL= jdbc:postgresql://postgres:5432/media
+      - SERVER_SERVLET_CONTEXT_PATH= /media
+      - SERVER_PORT
+      - ADC_PUBLIC_URL=${ADC_PUBLIC_API_URl}/media
+    volumes:
+      - ./data/images:/images
 networks:
   adc-network:
     driver: bridge

@@ -14,9 +14,9 @@ public record ProductCheckoutListVm(Long id,
 //                                    String sku,
 //                                    Long parentId,
                                     Long brandId,
-                                    Double price)
+                                    Double price,
 //                                    Long taxClassId,
-//                                    String thumbnailUrl,
+                                    String thumbnailUrl)
 //                                    ZonedDateTime createdOn,
 //                                    String createdBy,
 //                                    ZonedDateTime lastModifiedOn,
@@ -31,9 +31,9 @@ public record ProductCheckoutListVm(Long id,
 //                product.getSku(),
 //                Objects.isNull(product.getParent()) ? null : product.getParent().getId(),
                 product.getBrand().getId(),
-                product.getPrice()
+                product.getPrice(),
 //                product.getTaxClassId(),
-
+                ""
 //                product.getCreatedOn(),
 //                product.getCreatedBy(),
 //                product.getLastModifiedOn(),

@@ -3,10 +3,11 @@ package com.adc.product.controller;
 
 import com.adc.product.model.Book;
 import com.adc.product.model.PaginatedItems;
-import com.adc.product.service.BookService;
+import com.adc.product.service.ProductService;
 import com.adc.product.viewmodel.BookListGetVM;
 import com.adc.product.viewmodel.BookListVM;
 import com.adc.product.viewmodel.ProductGetCheckoutListVm;
+import com.adc.product.viewmodel.ProductThumbnailGetVm;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +16,10 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 public class BookController {
-    private BookService productService;
+    private ProductService productService;
 
-    public BookController(BookService bookService) {
-        this.productService = bookService;
+    public BookController(ProductService productService) {
+        this.productService = productService;
     }
 
 
@@ -63,8 +64,8 @@ public class BookController {
     }
 
     @GetMapping("/storefront/products/productsBestSelling")
-    public ResponseEntity<List<BookListVM>>  getProductBestSelling(){
-        return ResponseEntity.ok(productService.getProductByIdAndCompleted());
+    public ResponseEntity<List<ProductThumbnailGetVm>>  getProductBestSelling(){
+        return ResponseEntity.ok(productService.getProductBestSelling());
     }
 
 
