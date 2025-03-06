@@ -119,3 +119,17 @@ CREATE INDEX IF NOT EXISTS uk8tnb5iuyyghjijqk1pi5iobeh
     ON public.orders(shipping_address_id);
 
 END;
+
+
+
+
+INSERT INTO media (id, file_name, file_path, media_type) VALUES(1, 'me_lam_gi_co_uoc_mo_thumbnail.jpg', '/images/product/me_lam_gi_co_uoc_mo/me_lam_gi_co_uoc_mo_thumbnail.webp', 'image/webp');
+INSERT INTO media (id, file_name, file_path, media_type) VALUES(2, 'me_lam_gi_co_uoc_mo_1.jpg', '/images/product/me_lam_gi_co_uoc_mo/me_lam_gi_co_uoc_mo_1.webp', 'image/webp');
+INSERT INTO media (id, file_name, file_path, media_type) VALUES(3, 'me_lam_gi_co_uoc_mo_2.jpg', '/images/product/me_lam_gi_co_uoc_mo/me_lam_gi_co_uoc_mo_2.webp', 'image/webp');
+INSERT INTO media (id, file_name, file_path, media_type) VALUES(4, 'me_lam_gi_co_uoc_mo_3.jpg', '/images/product/me_lam_gi_co_uoc_mo/me_lam_gi_co_uoc_mo_3.webp', 'image/webp');
+INSERT INTO media (id, file_name, file_path, media_type) VALUES(5, 'me_lam_gi_co_uoc_mo_4.jpg', '/images/product/me_lam_gi_co_uoc_mo/me_lam_gi_co_uoc_mo_4.webp', 'image/webp');
+
+
+
+SELECT * FROM media
+

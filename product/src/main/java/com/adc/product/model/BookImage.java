@@ -18,7 +18,8 @@ public class BookImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String url;
+    @Column(name = "image_id")
+    private Long imageId;
 
     @ManyToOne
     @JoinColumn(name = "book_id",nullable = false)

@@ -2,9 +2,13 @@ package com.adc.product.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "book_cate")
+@Getter
+@Setter
 public class BookCate {
     private static final long serialVersionUID = 1L;
 
@@ -31,21 +35,7 @@ public class BookCate {
 
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
 
     public Cate getGenre() {
         return cate;

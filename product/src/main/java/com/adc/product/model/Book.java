@@ -21,12 +21,25 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String shorTDescription;
+
     private String description;
+    private String specification;
+
     private Long numPages;
+
     private boolean isPublished;
+
     private boolean isVisibleIndividually;
+
+    private boolean isFeatured;
+
+    private boolean isAllowedToOrder;
+
     private Date publishDate;
+
     private String slug;
+
     private String isbn13;
 
     private Long ratingsCount;
@@ -47,9 +60,8 @@ public class Book {
 
     private String authorName;
     private Long thumbnailMediaId;
-    @OneToMany(mappedBy = "book",cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
     private List<BookCate> bookCate;
-
 
 
     @ManyToOne(cascade = CascadeType.PERSIST)

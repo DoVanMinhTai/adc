@@ -32,7 +32,9 @@ const Banner = () => {
                     </Swiper>
                 </div>
                 <div className="h-full flex flex-col gap-4" >
-                    <div className="flex-1 bg-slate-500">3</div>
+                    <div className="flex-1 bg-slate-500">
+                        {/* <img src="" alt="" /> */}
+                    </div>
                     <div className="flex-1 bg-gray-300"></div>
                 </div>
             </div>

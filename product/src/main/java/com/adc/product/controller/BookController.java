@@ -4,17 +4,14 @@ package com.adc.product.controller;
 import com.adc.product.model.Book;
 import com.adc.product.model.PaginatedItems;
 import com.adc.product.service.ProductService;
-import com.adc.product.viewmodel.BookListGetVM;
-import com.adc.product.viewmodel.BookListVM;
-import com.adc.product.viewmodel.ProductGetCheckoutListVm;
-import com.adc.product.viewmodel.ProductThumbnailGetVm;
+import com.adc.product.viewmodel.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BookController {
     private ProductService productService;
 
@@ -26,15 +23,15 @@ public class BookController {
     @GetMapping("/getBooks")
     public ResponseEntity<PaginatedItems<Book>> getBooks(
             @RequestParam(defaultValue = "0") int pageIndex
-            ,@RequestParam(defaultValue = "10") int pageSize
+            , @RequestParam(defaultValue = "10") int pageSize
     ) {
-            PaginatedItems<Book> paginaredBooks = productService.getBooks(pageIndex,pageSize);
-            return ResponseEntity.ok(paginaredBooks);
+        PaginatedItems<Book> paginaredBooks = productService.getBooks(pageIndex, pageSize);
+        return ResponseEntity.ok(paginaredBooks);
     }
 
     @GetMapping("/search")
-    public ResponseEntity<PaginatedItems<Book>> search(@RequestParam(defaultValue = "word") String word,@RequestParam(defaultValue = "0") int pageIndex,@RequestParam(defaultValue = "10") int pageSize) {
-        PaginatedItems<Book> paginatedItems = productService.searchBooksByWord(word,pageIndex,pageSize);
+    public ResponseEntity<PaginatedItems<Book>> search(@RequestParam(defaultValue = "word") String word, @RequestParam(defaultValue = "0") int pageIndex, @RequestParam(defaultValue = "10") int pageSize) {
+        PaginatedItems<Book> paginatedItems = productService.searchBooksByWord(word, pageIndex, pageSize);
         return ResponseEntity.ok(paginatedItems);
     }
 
@@ -45,16 +42,18 @@ public class BookController {
             @RequestParam(value = "book-name", defaultValue = "", required = false) String bookName,
             @RequestParam(value = "brand-name", defaultValue = "", required = false) String brandName
     ) {
-      return ResponseEntity.ok(productService.getBooksWithFilter(pageNo,pageSize,bookName,brandName));
+        return ResponseEntity.ok(productService.getBooksWithFilter(pageNo, pageSize, bookName, brandName));
     }
+
     @GetMapping("/book/brand")
     public ResponseEntity<List<Book>> getBookBrand(
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = "5", required = false) int pageSize,
             @RequestParam(value = "brand-name", defaultValue = "", required = false) String brandName
     ) {
-        return ResponseEntity.ok(productService.getBooksByBrand(brandName ));
+        return ResponseEntity.ok(productService.getBooksByBrand(brandName));
     }
+
     @GetMapping("/products")
     public ResponseEntity<ProductGetCheckoutListVm> getProductCheckoutList(
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
@@ -64,8 +63,23 @@ public class BookController {
     }
 
     @GetMapping("/storefront/products/productsBestSelling")
-    public ResponseEntity<List<ProductThumbnailGetVm>>  getProductBestSelling(){
+    public ResponseEntity<List<ProductThumbnailGetVm>> getProductBestSelling() {
         return ResponseEntity.ok(productService.getProductBestSelling());
+    }
+
+    @GetMapping("/storefront/products/productFeatured")
+    public ResponseEntity<ProductFeaturedGetVm> getProductFeatured(
+            @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
+    ) {
+        return ResponseEntity.ok(productService.getFeaturedProduct(pageNo, pageSize));
+    }
+
+    @GetMapping("/storefront/product/{slug}")
+    public ResponseEntity<ProductDetailGetVm> getProductDetail(
+            @PathVariable String slug
+    ) {
+        return ResponseEntity.ok(productService.getProductDetail(slug));
     }
 
 

@@ -5,8 +5,7 @@ import { ProductThumbnail } from '../models/ProductThumbnail';
 import { getProductBestSelling } from '../services/ProductService';
 import ProductCard from '@/common/components/ProductCard';
 const BestSellerList = () => {
-    const [products, setProduct] = useState<ProductThumbnail[]>([]);
-    console.log("Current products state:", products);
+    const [products, setProducts] = useState<ProductThumbnail[]>([]);
 
     // const [pageNo, setPageNo] = useState<number>(0);
     // const [loading, setLoading] = useState<boolean>(false); // Để theo dõi trạng thái loading
@@ -16,12 +15,10 @@ const BestSellerList = () => {
         getProductBestSelling()
             .then((res) => {
                 const newProducts = Array.isArray(res) ? res : res?.productList ?? [];
-                setProduct(newProducts);
-                console.log("✅ Updated products state:", newProducts);
+                setProducts(newProducts);
             })
             .catch((error) => {
-                console.error("API error:", error);
-                setProduct([]);
+                setProducts([]);
             });
     }, []);
 

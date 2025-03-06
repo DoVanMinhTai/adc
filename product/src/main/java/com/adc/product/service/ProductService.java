@@ -1,16 +1,18 @@
 package com.adc.product.service;
 
+import com.adc.commonlibrary.exception.NotFoundException;
 import com.adc.product.model.*;
 import com.adc.product.respository.*;
 
 import com.adc.product.viewmodel.*;
 import io.micrometer.common.util.StringUtils;
-import jakarta.ws.rs.NotFoundException;
+//import jakarta.ws.rs.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,5 +102,51 @@ public class ProductService {
 
                 }
         ).toList();
+    }
+
+    public ProductFeaturedGetVm getFeaturedProduct(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        List<ProductThumbnailGetVm> productThumbnailGetVms = new ArrayList<>();
+        Page<Book> productPage = bookRepository.getFeaturedProducts(pageable);
+        List<Book> productList = productPage.getContent();
+        for (Book book : productList) {
+            productThumbnailGetVms.add(
+                    new ProductThumbnailGetVm(
+                            book.getId(),book.getName(),book.getSlug()
+                            ,mediaService.getMedia(book.getThumbnailMediaId()).url(),book.getPrice()
+                    )
+            );
+        }
+        return new ProductFeaturedGetVm(productThumbnailGetVms,productPage.getTotalPages() );
+
+    }
+
+    public ProductDetailGetVm getProductDetail(String slug) {
+        Book product = bookRepository.findBySlugAndIsPublishedTrue(slug).orElseThrow(
+                () -> new NotFoundException("Not Found For" ,slug)
+        );
+        String thumbnailMediaUrl = mediaService.getMedia(product.getThumbnailMediaId()).url();
+        List<String> productImageMediaUrl = new ArrayList<>();
+        if(CollectionUtils.isNotEmpty(product.getBookImages())) {
+            for (BookImage image : product.getBookImages()) {
+                productImageMediaUrl.add(mediaService.getMedia(image.getImageId()).url());
+            }
+        }
+
+//        List<String> productCategories = bookCategoryRepository.findById(product.getId());
+        return new ProductDetailGetVm(
+                product.getId(),
+                product.getName(),
+                product.getBrand().getName(),
+                product.getBookCate().stream().map(category -> category.getCate().getName()).toList(),
+                product.getShorTDescription(),
+                product.getDescription(),
+                product.getSpecification(),
+                product.isPublished(),
+                product.isFeatured(),
+                product.isAllowedToOrder(),
+                product.getPrice(),
+                thumbnailMediaUrl,
+                productImageMediaUrl);
     }
 }
