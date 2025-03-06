@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (
 
 const ProductDetailsPage = ({product} : Props) => {
     return (
-        <div className="container">
+        <div >
             <Head>{product.name}</Head>
 
             <ProductDetails product={product} />
