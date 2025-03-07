@@ -78,4 +78,13 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
+
+    private String size;
+    private Long stockQuantity;
+    private Double weight;
+    private String metaTitle;
+    private String metaKeyword;
+    private String metaDescription;
+    @Column(name = "packageDimensions")
+    private String packageDimensions;
 }

@@ -11,4 +11,17 @@ export type ProductDetail = {
     price: number;
     thumbnailMediaUrl: string;
     productImageMediaUrl: string[];
+    availability: number;
+    discountPercentage: number;
+    itemWeight: number;
+    numPages: number;
+    publishDate: Date;
+    ratingsCount: number;
+    stockQuantity: number;
+    isbn13: string;
+    metaDescription: string;
+    metaKeyword: string;
+    metaTitle: string;
+    slug: string;
+    packageDimensions: string;
 }

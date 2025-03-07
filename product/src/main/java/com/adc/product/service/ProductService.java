@@ -147,6 +147,20 @@ public class ProductService {
                 product.isAllowedToOrder(),
                 product.getPrice(),
                 thumbnailMediaUrl,
-                productImageMediaUrl);
+                productImageMediaUrl,
+                product.getAvailability(),
+                product.getDiscountPercentage(),
+                product.getItemWeight(),
+                product.getNumPages(),
+                product.getPublishDate(),
+                product.getRatingsCount(),
+                product.getStockQuantity(),
+                product.getIsbn13(),
+                product.getMetaDescription(),
+                product.getMetaKeyword(),
+                product.getMetaTitle(),
+                product.getSlug(),
+                product.getPackageDimensions()
+        );
     }
 }

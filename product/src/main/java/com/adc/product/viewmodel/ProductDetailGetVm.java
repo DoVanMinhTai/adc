@@ -1,7 +1,6 @@
 package com.adc.product.viewmodel;
 
-import com.adc.product.model.Cate;
-
+import java.util.Date;
 import java.util.List;
 
 public record ProductDetailGetVm(
@@ -17,7 +16,19 @@ public record ProductDetailGetVm(
         boolean isAllowedToOrder,
         Double price,
         String thumbnailMediaUrl,
-        List<String> productImageMediaUrl
-
+        List<String> productImageMediaUrl,
+        Double availability,
+        Float discountPercentage,
+        Double itemWeight,
+        Long numPages,
+        Date publishDate,
+        Long ratingsCount,
+        Long stockQuantity,
+        String isbn13,
+        String metaDescription,
+        String metaKeyword,
+        String metaTitle,
+        String slug,
+        String packageDimensions
 ) {
 }
