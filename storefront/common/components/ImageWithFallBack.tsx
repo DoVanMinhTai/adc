@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Image } from 'react-bootstrap'
 import clsx from 'clsx';
 // src, alt,width,height,className,fallback,styleinline
 type Props = {
@@ -32,7 +31,7 @@ const ImageWithFallBack = ({
     }, [src]);
     return (
         <>
-            <Image
+            <img
                 width={width}
                 height={height}
                 style={style}
@@ -46,7 +45,7 @@ const ImageWithFallBack = ({
                 }}
             >
 
-            </Image>
+            </img>
         </>
     )
 }

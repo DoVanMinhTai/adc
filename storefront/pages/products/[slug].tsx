@@ -1,8 +1,8 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next"
-import { ProductDetail } from "@/modules/catalog/model/ProductDetail";
-import { getProductDetail } from "@/modules/catalog/services/ProductService";
+import { ProductDetail } from "@/modules/productdetail/model/ProductDetail";
+import { getProductDetail } from "@/modules/productdetail/services/ProductService";
 import Head from "next/head";
-import ProductDetails from "@/modules/catalog/components/ProductDetails";
+import ProductDetails from "@/modules/productdetail/components/ProductDetails";
  type Props = {
     product: ProductDetail;
     pvid: string | null;

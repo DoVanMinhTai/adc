@@ -51,6 +51,8 @@ spring:
           uri: http://localhost:3000
           predicates:
             - Path=/**
+      default-filters:
+        - SaveSession
 ---
 adc:
   services:

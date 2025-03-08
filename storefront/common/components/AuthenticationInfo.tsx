@@ -19,7 +19,7 @@ export default function AuthenticationInfo() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   async function getAuthenticationInfo(): Promise<AuthenticationInfoVm> {
-    const res = await fetch(`/authentication`);
+    const res = await fetch(`http://localhost:8087/authentication`);
     return await res.json();
   }
 
@@ -31,9 +31,8 @@ export default function AuthenticationInfo() {
 
   return (
     <div className="">
-      {/* {authenticatedInfoVm.isAuthenticated ? ( */}
+      {authenticatedInfoVm.isAuthenticated ? (
         <div className="">
-          {/* Nút mở dropdown */}
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="bg-slate-800 px-4 py-2 rounded-lg text-white focus:outline-none "
@@ -60,11 +59,11 @@ export default function AuthenticationInfo() {
             </div>
           )}
         </div>
-      {/* ) : ( */}
-        {/* <Link href="/oauth2/authorization/keycloak" className="text-gray-300 hover:text-white">
+      ) : (
+        <Link href="http://localhost:8087/oauth2/authorization/keycloak" className="text-gray-300 hover:text-white">
           Login
-        </Link> */}
-      {/* )} */}
+        </Link>
+      )}
     </div>
   );
 }
