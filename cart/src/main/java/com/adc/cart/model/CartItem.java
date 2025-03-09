@@ -6,7 +6,7 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import lombok.*;
 
-@IdClass(CartItem.class)
+@IdClass(CartItemId.class)
 @Entity
 @Table(name = "cart_item")
 @NoArgsConstructor
@@ -14,7 +14,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class CartItem {
+public class CartItem{
     @Id
     private String customerId;
 

@@ -22,7 +22,7 @@ const ProductCardBase: React.FC<ProductCardBase> = ({ product, thumbnailUrl }) =
                     <h2 className="text-lg font-semibold mt-2">{product.name}</h2>
                     <p className="text-gray-500">{formatPrice(product.price)}</p>
                     </Link>
-                    <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md">
+                    <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md" onClick={addToCart()}>
                         Thêm vào giỏ Hàng
                     </button>
                 </div>
